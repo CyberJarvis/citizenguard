@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueRadar - Ocean Hazard Monitoring</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #0c1929 0%, #1a3a5c 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            background: linear-gradient(90deg, #00d4ff, #0099cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo span {
+            font-size: 0.9rem;
+            color: #8892a0;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff4444;
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.connected {
+            background: #00ff88;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .main {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .alerts-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-label {
+            font-size: 0.8rem;
+            color: #8892a0;
+        }
+
+        .filter-select {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #00d4ff;
+        }
+
+        .filter-select option {
+            background: #1a2a3a;
+            color: #fff;
+        }
+
+        .filter-chip {
+            background: rgba(0, 212, 255, 0.2);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-chip:hover {
+            background: rgba(0, 212, 255, 0.3);
+        }
+
+        .filter-chip.active {
+            background: #00d4ff;
+            color: #000;
+        }
+
+        .platform-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .alert-count {
+            background: #00d4ff;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .alerts-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-height: calc(100vh - 250px);
+            overflow-y: auto;
+        }
+
+        .alert-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid #00d4ff;
+            transition: transform 0.2s, box-shadow 0.2s;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .alert-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .alert-card.critical {
+            border-left-color: #ff4444;
+            background: rgba(255, 68, 68, 0.1);
+        }
+
+        .alert-card.high {
+            border-left-color: #ff8800;
+            background: rgba(255, 136, 0, 0.1);
+        }
+
+        .alert-card.medium {
+            border-left-color: #ffcc00;
+        }
+
+        .alert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .severity-badge {
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .severity-badge.critical {
+            background: #ff4444;
+            color: #fff;
+        }
+
+        .severity-badge.high {
+            background: #ff8800;
+            color: #fff;
+        }
+
+        .severity-badge.medium {
+            background: #ffcc00;
+            color: #000;
+        }
+
+        .severity-badge.low {
+            background: #00cc66;
+            color: #fff;
+        }
+
+        .alert-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .alert-description {
+            font-size: 0.9rem;
+            color: #b0b8c0;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .alert-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            font-size: 0.8rem;
+            color: #8892a0;
+        }
+
+        .alert-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .stats-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #8892a0;
+            margin-top: 5px;
+        }
+
+        .hazard-list {
+            margin-top: 15px;
+        }
+
+        .hazard-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hazard-name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hazard-icon {
+            font-size: 1.2rem;
+        }
+
+        .hazard-count {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+        }
+
+        .region-list {
+            margin-top: 15px;
+        }
+
+        .region-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+        }
+
+        .region-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            flex: 1;
+            margin: 0 15px;
+            overflow: hidden;
+        }
+
+        .region-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #0099cc);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #8892a0;
+        }
+
+        .empty-state .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .connection-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .connection-modal {
+            background: #1a2a3a;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .connection-modal h2 {
+            margin-bottom: 15px;
+        }
+
+        .connection-modal p {
+            color: #8892a0;
+            margin-bottom: 20px;
+        }
+
+        .retry-btn {
+            background: #00d4ff;
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .retry-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 1024px) {
+            .main {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .stats-card {
+                flex: 1;
+                min-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <span class="logo-icon">🌊</span>
+            <div>
+                <h1>BlueRadar</h1>
+                <span>Ocean Hazard Monitoring System</span>
+            </div>
+        </div>
+        <div class="status">
+            <div class="status-dot" id="statusDot"></div>
+            <span id="statusText">Connecting...</span>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="alerts-section">
+            <div class="section-header">
+                <h2 class="section-title">Live Alerts</h2>
+                <span class="alert-count" id="alertCount">0 alerts</span>
+            </div>
+            <div class="filter-bar">
+                <div class="filter-group">
+                    <span class="filter-label">Platform:</span>
+                    <select class="filter-select" id="filterPlatform" onchange="applyFilters()">
+                        <option value="all">All Platforms</option>
+                        <option value="twitter">Twitter</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="news">News</option>
+                        <option value="instagram">Instagram</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label">Severity:</span>
+                    <select class="filter-select" id="filterSeverity" onchange="applyFilters()">
+                        <option value="all">All Severities</option>
+                        <option value="CRITICAL">Critical</option>
+                        <option value="HIGH">High</option>
+                        <option value="MEDIUM">Medium</option>
+                        <option value="LOW">Low</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label">Region:</span>
+                    <select class="filter-select" id="filterRegion" onchange="applyFilters()">
+                        <option value="all">All Regions</option>
+                        <option value="east_coast">East Coast</option>
+                        <option value="west_coast">West Coast</option>
+                        <option value="islands">Islands</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label">Time:</span>
+                    <select class="filter-select" id="filterTime" onchange="applyFilters()">
+                        <option value="all">All Time</option>
+                        <option value="1">Last 1 Hour</option>
+                        <option value="6">Last 6 Hours</option>
+                        <option value="24">Last 24 Hours</option>
+                        <option value="48">Last 48 Hours</option>
+                    </select>
+                </div>
+            </div>
+            <div class="alerts-list" id="alertsList">
+                <div class="empty-state" id="emptyState">
+                    <div class="icon">📡</div>
+                    <h3>Monitoring Active</h3>
+                    <p>Waiting for hazard alerts...</p>
+                </div>
+            </div>
+        </section>
+
+        <aside class="sidebar">
+            <div class="stats-card">
+                <h3 class="section-title">Statistics</h3>
+                <div class="stat-grid">
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalAlerts">0</div>
+                        <div class="stat-label">Total Alerts</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="criticalCount">0</div>
+                        <div class="stat-label">Critical</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="highCount">0</div>
+                        <div class="stat-label">High</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="regionsCount">0</div>
+                        <div class="stat-label">Regions</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-card">
+                <h3 class="section-title">Hazard Types</h3>
+                <div class="hazard-list" id="hazardList">
+                    <div class="hazard-item">
+                        <span class="hazard-name"><span class="hazard-icon">🌀</span> Cyclone</span>
+                        <span class="hazard-count" id="cycloneCount">0</span>
+                    </div>
+                    <div class="hazard-item">
+                        <span class="hazard-name"><span class="hazard-icon">🌊</span> Flood</span>
+                        <span class="hazard-count" id="floodCount">0</span>
+                    </div>
+                    <div class="hazard-item">
+                        <span class="hazard-name"><span class="hazard-icon">⚡</span> Storm Surge</span>
+                        <span class="hazard-count" id="stormCount">0</span>
+                    </div>
+                    <div class="hazard-item">
+                        <span class="hazard-name"><span class="hazard-icon">🌊</span> Tsunami</span>
+                        <span class="hazard-count" id="tsunamiCount">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-card">
+                <h3 class="section-title">Affected Regions</h3>
+                <div class="region-list" id="regionList">
+                    <div class="region-item">
+                        <span>East Coast</span>
+                        <div class="region-bar"><div class="region-bar-fill" style="width: 0%" id="eastCoastBar"></div></div>
+                        <span id="eastCoastCount">0</span>
+                    </div>
+                    <div class="region-item">
+                        <span>West Coast</span>
+                        <div class="region-bar"><div class="region-bar-fill" style="width: 0%" id="westCoastBar"></div></div>
+                        <span id="westCoastCount">0</span>
+                    </div>
+                    <div class="region-item">
+                        <span>Islands</span>
+                        <div class="region-bar"><div class="region-bar-fill" style="width: 0%" id="islandsBar"></div></div>
+                        <span id="islandsCount">0</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <div class="connection-overlay hidden" id="connectionOverlay">
+        <div class="connection-modal">
+            <h2>Connection Lost</h2>
+            <p>Unable to connect to the BlueRadar server. Make sure the real-time engine is running.</p>
+            <button class="retry-btn" onclick="connect()">Retry Connection</button>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const WS_URL = 'ws://localhost:8765';
+
+        // State
+        let ws = null;
+        let alerts = [];
+        let filteredAlerts = [];
+        let currentFilters = {
+            platform: 'all',
+            severity: 'all',
+            region: 'all',
+            time: 'all'
+        };
+        let stats = {
+            total: 0,
+            critical: 0,
+            high: 0,
+            regions: new Set(),
+            hazards: {
+                cyclone: 0,
+                flood: 0,
+                storm_surge: 0,
+                tsunami: 0,
+                rough_sea: 0
+            },
+            regionCounts: {
+                east_coast: 0,
+                west_coast: 0,
+                islands: 0
+            }
+        };
+
+        // Connect to WebSocket
+        function connect() {
+            document.getElementById('connectionOverlay').classList.add('hidden');
+            document.getElementById('statusText').textContent = 'Connecting...';
+            document.getElementById('statusDot').classList.remove('connected');
+
+            ws = new WebSocket(WS_URL);
+
+            ws.onopen = () => {
+                console.log('Connected to BlueRadar');
+                document.getElementById('statusText').textContent = 'Live';
+                document.getElementById('statusDot').classList.add('connected');
+
+                // Request history
+                ws.send(JSON.stringify({ type: 'get_history', count: 50 }));
+            };
+
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                handleMessage(data);
+            };
+
+            ws.onclose = () => {
+                console.log('Disconnected');
+                document.getElementById('statusText').textContent = 'Disconnected';
+                document.getElementById('statusDot').classList.remove('connected');
+                document.getElementById('connectionOverlay').classList.remove('hidden');
+            };
+
+            ws.onerror = (error) => {
+                console.error('WebSocket error:', error);
+                document.getElementById('connectionOverlay').classList.remove('hidden');
+            };
+        }
+
+        // Handle incoming messages
+        function handleMessage(data) {
+            switch (data.type) {
+                case 'alert':
+                    addAlert(data.alert);
+                    break;
+                case 'history':
+                    data.alerts.forEach(alert => addAlert(alert, false));
+                    break;
+                case 'stats':
+                    updateStatsFromServer(data.data);
+                    break;
+            }
+        }
+
+        // Add new alert
+        function addAlert(alert, animate = true) {
+            // Check for duplicates
+            if (alerts.find(a => a.id === alert.id)) return;
+
+            alerts.unshift(alert);
+            updateStats(alert);
+
+            // Apply filters and re-render
+            applyFilters();
+
+            // Play sound for critical alerts
+            if (alert.severity === 'CRITICAL' && animate && passesFilter(alert)) {
+                playAlertSound();
+            }
+        }
+
+        // Check if alert passes current filters
+        function passesFilter(alert) {
+            // Platform filter
+            if (currentFilters.platform !== 'all' && alert.platform !== currentFilters.platform) {
+                return false;
+            }
+
+            // Severity filter
+            if (currentFilters.severity !== 'all' && alert.severity !== currentFilters.severity) {
+                return false;
+            }
+
+            // Region filter
+            if (currentFilters.region !== 'all' && alert.region !== currentFilters.region) {
+                return false;
+            }
+
+            // Time filter
+            if (currentFilters.time !== 'all') {
+                const hours = parseInt(currentFilters.time);
+                const alertTime = new Date(alert.timestamp);
+                const now = new Date();
+                const hoursAgo = (now - alertTime) / (1000 * 60 * 60);
+                if (hoursAgo > hours) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        // Apply filters and re-render alerts
+        function applyFilters() {
+            currentFilters.platform = document.getElementById('filterPlatform').value;
+            currentFilters.severity = document.getElementById('filterSeverity').value;
+            currentFilters.region = document.getElementById('filterRegion').value;
+            currentFilters.time = document.getElementById('filterTime').value;
+
+            filteredAlerts = alerts.filter(passesFilter);
+            renderAllAlerts();
+        }
+
+        // Render all filtered alerts
+        function renderAllAlerts() {
+            const alertsList = document.getElementById('alertsList');
+            alertsList.innerHTML = '';
+
+            if (filteredAlerts.length === 0) {
+                alertsList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="icon">📡</div>
+                        <h3>No Alerts Match Filters</h3>
+                        <p>Try adjusting your filter criteria</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filteredAlerts.forEach(alert => renderAlert(alert, false));
+            updateUI();
+        }
+
+        // Update statistics
+        function updateStats(alert) {
+            stats.total++;
+
+            if (alert.severity === 'CRITICAL') stats.critical++;
+            if (alert.severity === 'HIGH') stats.high++;
+
+            if (alert.region) {
+                stats.regions.add(alert.region);
+                if (stats.regionCounts[alert.region] !== undefined) {
+                    stats.regionCounts[alert.region]++;
+                }
+            }
+
+            if (alert.type && stats.hazards[alert.type] !== undefined) {
+                stats.hazards[alert.type]++;
+            }
+        }
+
+        // Render single alert
+        function renderAlert(alert, animate = true) {
+            const emptyState = document.getElementById('emptyState');
+            if (emptyState) emptyState.remove();
+
+            const alertsList = document.getElementById('alertsList');
+
+            const alertEl = document.createElement('div');
+            alertEl.className = `alert-card ${alert.severity.toLowerCase()}`;
+            if (!animate) alertEl.style.animation = 'none';
+
+            const timeAgo = getTimeAgo(new Date(alert.timestamp));
+            const platformIcon = getPlatformIcon(alert.platform);
+
+            alertEl.innerHTML = `
+                <div class="alert-header">
+                    <span class="severity-badge ${alert.severity.toLowerCase()}">${alert.severity}</span>
+                    <span style="color: #8892a0; font-size: 0.8rem;">${timeAgo}</span>
+                </div>
+                <h3 class="alert-title">${escapeHtml(alert.title)}</h3>
+                <p class="alert-description">${escapeHtml(alert.description)}</p>
+                <div class="alert-meta">
+                    <span>${platformIcon} ${alert.platform}</span>
+                    ${alert.location ? `<span>📍 ${alert.location}</span>` : ''}
+                    ${alert.region ? `<span>🗺️ ${formatRegion(alert.region)}</span>` : ''}
+                    <span>📊 ${Math.round(alert.relevance_score)}% relevance</span>
+                </div>
+            `;
+
+            if (alert.source_url) {
+                alertEl.style.cursor = 'pointer';
+                alertEl.onclick = () => window.open(alert.source_url, '_blank');
+            }
+
+            alertsList.insertBefore(alertEl, alertsList.firstChild);
+
+            // Limit displayed alerts
+            while (alertsList.children.length > 50) {
+                alertsList.removeChild(alertsList.lastChild);
+            }
+        }
+
+        // Update UI elements
+        function updateUI() {
+            const showing = filteredAlerts.length;
+            const total = stats.total;
+            document.getElementById('alertCount').textContent = showing === total ? `${total} alerts` : `${showing}/${total} alerts`;
+            document.getElementById('totalAlerts').textContent = stats.total;
+            document.getElementById('criticalCount').textContent = stats.critical;
+            document.getElementById('highCount').textContent = stats.high;
+            document.getElementById('regionsCount').textContent = stats.regions.size;
+
+            // Update hazard counts
+            document.getElementById('cycloneCount').textContent = stats.hazards.cyclone;
+            document.getElementById('floodCount').textContent = stats.hazards.flood;
+            document.getElementById('stormCount').textContent = stats.hazards.storm_surge;
+            document.getElementById('tsunamiCount').textContent = stats.hazards.tsunami;
+
+            // Update region bars
+            const maxRegion = Math.max(...Object.values(stats.regionCounts), 1);
+
+            document.getElementById('eastCoastCount').textContent = stats.regionCounts.east_coast;
+            document.getElementById('eastCoastBar').style.width = `${(stats.regionCounts.east_coast / maxRegion) * 100}%`;
+
+            document.getElementById('westCoastCount').textContent = stats.regionCounts.west_coast;
+            document.getElementById('westCoastBar').style.width = `${(stats.regionCounts.west_coast / maxRegion) * 100}%`;
+
+            document.getElementById('islandsCount').textContent = stats.regionCounts.islands;
+            document.getElementById('islandsBar').style.width = `${(stats.regionCounts.islands / maxRegion) * 100}%`;
+        }
+
+        // Helper functions
+        function getTimeAgo(date) {
+            const seconds = Math.floor((new Date() - date) / 1000);
+            if (seconds < 60) return 'Just now';
+            if (seconds < 3600) return `${Math.floor(seconds / 60)}m ago`;
+            if (seconds < 86400) return `${Math.floor(seconds / 3600)}h ago`;
+            return `${Math.floor(seconds / 86400)}d ago`;
+        }
+
+        function getPlatformIcon(platform) {
+            const icons = {
+                twitter: '🐦',
+                instagram: '📸',
+                youtube: '🎬',
+                facebook: '📘',
+                news: '📰'
+            };
+            return icons[platform] || '📱';
+        }
+
+        function formatRegion(region) {
+            return region.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function playAlertSound() {
+            // Create a simple beep sound
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                oscillator.frequency.value = 800;
+                oscillator.type = 'sine';
+                gainNode.gain.value = 0.3;
+
+                oscillator.start();
+                setTimeout(() => oscillator.stop(), 200);
+            } catch (e) {
+                console.log('Audio not available');
+            }
+        }
+
+        // Demo mode - simulate alerts when not connected
+        function startDemoMode() {
+            const demoAlerts = [
+                {
+                    id: 'demo1',
+                    type: 'cyclone',
+                    severity: 'CRITICAL',
+                    title: 'CRITICAL: Cyclone detected near Chennai',
+                    description: 'Cyclone Ditwah approaching Tamil Nadu coast with wind speeds of 120 kmph. Red alert issued for coastal districts.',
+                    location: 'Chennai',
+                    region: 'east_coast',
+                    platform: 'twitter',
+                    source_url: '#',
+                    relevance_score: 95,
+                    timestamp: new Date().toISOString()
+                },
+                {
+                    id: 'demo2',
+                    type: 'flood',
+                    severity: 'HIGH',
+                    title: 'HIGH: Severe flooding in Mumbai suburbs',
+                    description: 'Multiple areas waterlogged after heavy rainfall. Local trains disrupted. Residents advised to stay indoors.',
+                    location: 'Mumbai',
+                    region: 'west_coast',
+                    platform: 'instagram',
+                    source_url: '#',
+                    relevance_score: 82,
+                    timestamp: new Date(Date.now() - 300000).toISOString()
+                },
+                {
+                    id: 'demo3',
+                    type: 'storm_surge',
+                    severity: 'HIGH',
+                    title: 'HIGH: Storm surge warning for Odisha coast',
+                    description: 'High waves expected along Odisha coast. Fishermen advised not to venture into sea for next 48 hours.',
+                    location: 'Puri',
+                    region: 'east_coast',
+                    platform: 'youtube',
+                    source_url: '#',
+                    relevance_score: 78,
+                    timestamp: new Date(Date.now() - 600000).toISOString()
+                }
+            ];
+
+            document.getElementById('statusText').textContent = 'Demo Mode';
+            demoAlerts.forEach((alert, i) => {
+                setTimeout(() => addAlert(alert), i * 1000);
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            connect();
+            // Demo mode disabled - using real data only
+        });
+    </script>
+</body>
+</html>

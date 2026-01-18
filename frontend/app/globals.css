@@ -1,0 +1,529 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* CoastGuardian Ocean Blue Theme */
+  --primary: #0d4a6f;
+  --primary-light: #1a6b9a;
+  --primary-dark: #083a57;
+  --primary-foreground: #FFFFFF;
+
+  /* Secondary */
+  --secondary: #F1F5F9;
+  --secondary-foreground: #0F172A;
+
+  /* Accent - Hero Button Orange */
+  --accent: #F97316;
+  --accent-foreground: #FFFFFF;
+
+  /* Status Colors */
+  --success: #16A34A;
+  --warning: #EA580C;
+  --error: #DC2626;
+  --info: #0d4a6f;
+
+  /* Neutrals */
+  --background: #F8FAFC;
+  --foreground: #0F172A;
+  --card: #FFFFFF;
+  --card-foreground: #0F172A;
+  --popover: #FFFFFF;
+  --popover-foreground: #0F172A;
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+  --border: #E2E8F0;
+  --input: #F1F5F9;
+  --ring: #1a6b9a;
+
+  /* Radius */
+  --radius: 0.75rem;
+
+  /* Destructive */
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+
+  /* Chart Colors */
+  --chart-1: #0d4a6f;
+  --chart-2: #1a6b9a;
+  --chart-3: #F97316;
+  --chart-4: #2563EB;
+  --chart-5: #16A34A;
+
+  /* Sidebar */
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #0F172A;
+  --sidebar-primary: #0d4a6f;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #e8f4fc;
+  --sidebar-accent-foreground: #0d4a6f;
+  --sidebar-border: #E2E8F0;
+  --sidebar-ring: #1a6b9a;
+}
+
+@theme inline {
+
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+
+  /* Ocean Blue Primary Colors - #0d4a6f based palette */
+  --color-ocean-50: #e8f4fc;
+  --color-ocean-100: #c5e1f5;
+  --color-ocean-200: #9ecbec;
+  --color-ocean-300: #6badd9;
+  --color-ocean-400: #4391c4;
+  --color-ocean-500: #1a6b9a;
+  --color-ocean-600: #0d4a6f;
+  --color-ocean-700: #083a57;
+  --color-ocean-800: #052a40;
+  --color-ocean-900: #031c2b;
+
+  /* Orange Accent Colors (Hero Button) */
+  --color-orange-50: #FFF7ED;
+  --color-orange-100: #FFEDD5;
+  --color-orange-200: #FED7AA;
+  --color-orange-300: #FDBA74;
+  --color-orange-400: #FB923C;
+  --color-orange-500: #F97316;
+  --color-orange-600: #EA580C;
+  --color-orange-700: #C2410C;
+
+  /* Keep blue for backward compatibility */
+  --color-blue-600: #2563EB;
+  --color-blue-700: #1D4ED8;
+  --color-blue-500: #3B82F6;
+  --color-blue-50: #EFF6FF;
+  --color-blue-100: #DBEAFE;
+  --color-blue-400: #60A5FA;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* Leaflet map styles - CRITICAL for map display */
+.leaflet-container {
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+}
+
+.leaflet-tile-pane {
+  z-index: 2;
+}
+
+.leaflet-overlay-pane {
+  z-index: 4;
+}
+
+.leaflet-marker-pane {
+  z-index: 6;
+}
+
+.leaflet-popup-pane {
+  z-index: 7;
+}
+
+/* Pulse animation for critical alerts */
+@keyframes pulse-marker {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.2);
+  }
+}
+
+.pulse-marker {
+  animation: pulse-marker 2s ease-in-out infinite;
+}
+
+/* Hero Button Pulse Glow Animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(249, 115, 22, 0);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* FAB (Floating Action Button) Styles */
+.fab-hero {
+  background: linear-gradient(135deg, #F97316 0%, #DC2626 100%);
+  box-shadow: 0 8px 24px -4px rgba(249, 115, 22, 0.5);
+  transition: all 0.2s ease-out;
+}
+
+.fab-hero:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 32px -4px rgba(249, 115, 22, 0.6);
+}
+
+.fab-hero:active {
+  transform: scale(0.95);
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, Opera */
+}
+
+/* Notification Panel Animations */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+/* Active state scale for touch feedback */
+.active\:scale-98:active {
+  transform: scale(0.98);
+}
+
+.active\:scale-90:active {
+  transform: scale(0.90);
+}
+
+/* Smooth transitions */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom scrollbar for notifications */
+.notification-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.notification-scroll::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.notification-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.notification-scroll::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ==================== Google Translate Widget Styles ==================== */
+
+/* Hide ALL Google Translate injected elements */
+.goog-te-banner-frame,
+.skiptranslate > iframe,
+.goog-te-spinner-pos,
+body > .skiptranslate {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+}
+
+/* Prevent Google from pushing body down */
+body {
+  top: 0 !important;
+  position: static !important;
+}
+
+/* Hide the default Google Translate gadget completely */
+#google_translate_element {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Custom language button styling */
+.translate-icon-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  color: white;
+}
+
+.translate-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Language dropdown menu */
+.language-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e2e8f0;
+  min-width: 180px;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.language-dropdown-item {
+  padding: 10px 16px;
+  font-size: 13px;
+  color: #334155;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.language-dropdown-item:hover {
+  background: #f1f5f9;
+}
+
+.language-dropdown-item.active {
+  background: #e8f4fc;
+  color: #0d4a6f;
+  font-weight: 500;
+}
+
+/* Fixed position translate for non-dashboard pages (login, etc) */
+.google-translate-fixed {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 9999;
+}
+
+@media (max-width: 640px) {
+  .google-translate-fixed {
+    top: auto;
+    bottom: 80px;
+    right: 16px;
+  }
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Leaflet map styles - CRITICAL for map display */
+.leaflet-container {
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+}
+
+.leaflet-tile-pane {
+  z-index: 2;
+}
+
+.leaflet-overlay-pane {
+  z-index: 4;
+}
+
+.leaflet-marker-pane {
+  z-index: 6;
+}
+
+.leaflet-popup-pane {
+  z-index: 7;
+}
+
+/* Pulse animation for critical alerts */
+@keyframes pulse-marker {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.2);
+  }
+}
+
+.pulse-marker {
+  animation: pulse-marker 2s ease-in-out infinite;
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, Opera */
+}
+
+/* Notification Panel Animations */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+/* Active state scale for touch feedback */
+.active\:scale-98:active {
+  transform: scale(0.98);
+}
+
+.active\:scale-90:active {
+  transform: scale(0.90);
+}
+
+/* Smooth transitions */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom scrollbar for notifications */
+.notification-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.notification-scroll::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.notification-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.notification-scroll::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

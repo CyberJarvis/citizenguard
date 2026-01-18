@@ -1,0 +1,226 @@
+{
+  "type": "FeatureCollection",
+  "name": "Indian Ports",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mumbai Port (JNPT)",
+        "type": "major",
+        "state": "Maharashtra",
+        "capacity": "Very High",
+        "description": "Jawaharlal Nehru Port Trust - India's largest container port"
+      },
+      "geometry": { "type": "Point", "coordinates": [72.9519, 18.9489] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Chennai Port",
+        "type": "major",
+        "state": "Tamil Nadu",
+        "capacity": "High",
+        "description": "Second largest port in India by cargo volume"
+      },
+      "geometry": { "type": "Point", "coordinates": [80.2947, 13.0927] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kolkata Port (Haldia)",
+        "type": "major",
+        "state": "West Bengal",
+        "capacity": "High",
+        "description": "Oldest operating port in India"
+      },
+      "geometry": { "type": "Point", "coordinates": [88.0833, 22.0333] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Visakhapatnam Port",
+        "type": "major",
+        "state": "Andhra Pradesh",
+        "capacity": "High",
+        "description": "Largest port on the east coast by cargo volume"
+      },
+      "geometry": { "type": "Point", "coordinates": [83.2847, 17.6868] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kandla Port",
+        "type": "major",
+        "state": "Gujarat",
+        "capacity": "Very High",
+        "description": "Largest port in India by cargo tonnage"
+      },
+      "geometry": { "type": "Point", "coordinates": [70.2167, 23.0333] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cochin Port",
+        "type": "major",
+        "state": "Kerala",
+        "capacity": "High",
+        "description": "Major port on India's southwest coast"
+      },
+      "geometry": { "type": "Point", "coordinates": [76.2673, 9.9312] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Paradip Port",
+        "type": "major",
+        "state": "Odisha",
+        "capacity": "High",
+        "description": "Deep-water port on Bay of Bengal"
+      },
+      "geometry": { "type": "Point", "coordinates": [86.6128, 20.2644] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "New Mangalore Port",
+        "type": "major",
+        "state": "Karnataka",
+        "capacity": "Medium",
+        "description": "All-weather port handling petroleum products"
+      },
+      "geometry": { "type": "Point", "coordinates": [74.8123, 12.9141] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tuticorin Port",
+        "type": "major",
+        "state": "Tamil Nadu",
+        "capacity": "Medium",
+        "description": "Major port in Gulf of Mannar"
+      },
+      "geometry": { "type": "Point", "coordinates": [78.1348, 8.7642] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mormugao Port",
+        "type": "major",
+        "state": "Goa",
+        "capacity": "Medium",
+        "description": "Natural harbor, iron ore exports"
+      },
+      "geometry": { "type": "Point", "coordinates": [73.8007, 15.4023] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ennore Port",
+        "type": "major",
+        "state": "Tamil Nadu",
+        "capacity": "Medium",
+        "description": "First corporatized major port"
+      },
+      "geometry": { "type": "Point", "coordinates": [80.3119, 13.2167] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Port Blair",
+        "type": "minor",
+        "state": "Andaman & Nicobar",
+        "capacity": "Low",
+        "description": "Main port of Andaman Islands"
+      },
+      "geometry": { "type": "Point", "coordinates": [92.7265, 11.6234] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Karaikal Port",
+        "type": "minor",
+        "state": "Puducherry",
+        "capacity": "Medium",
+        "description": "Private port near Puducherry"
+      },
+      "geometry": { "type": "Point", "coordinates": [79.8500, 10.9167] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kakinada Port",
+        "type": "minor",
+        "state": "Andhra Pradesh",
+        "capacity": "Medium",
+        "description": "Deep water port in Andhra Pradesh"
+      },
+      "geometry": { "type": "Point", "coordinates": [82.2475, 16.9891] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mundra Port",
+        "type": "private",
+        "state": "Gujarat",
+        "capacity": "Very High",
+        "description": "India's largest private port"
+      },
+      "geometry": { "type": "Point", "coordinates": [69.7047, 22.8394] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pipavav Port",
+        "type": "private",
+        "state": "Gujarat",
+        "capacity": "High",
+        "description": "First private port in India"
+      },
+      "geometry": { "type": "Point", "coordinates": [71.5070, 20.9167] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Krishnapatnam Port",
+        "type": "private",
+        "state": "Andhra Pradesh",
+        "capacity": "High",
+        "description": "Deepest port in India"
+      },
+      "geometry": { "type": "Point", "coordinates": [80.1167, 14.2500] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dhamra Port",
+        "type": "private",
+        "state": "Odisha",
+        "capacity": "High",
+        "description": "Deep-water port in Odisha"
+      },
+      "geometry": { "type": "Point", "coordinates": [86.9500, 20.7833] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gangavaram Port",
+        "type": "private",
+        "state": "Andhra Pradesh",
+        "capacity": "High",
+        "description": "Deepest inner harbor port"
+      },
+      "geometry": { "type": "Point", "coordinates": [83.2333, 17.6200] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hazira Port",
+        "type": "private",
+        "state": "Gujarat",
+        "capacity": "Medium",
+        "description": "LNG terminal port"
+      },
+      "geometry": { "type": "Point", "coordinates": [72.6500, 21.1000] }
+    }
+  ]
+}

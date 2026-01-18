@@ -1,0 +1,31 @@
+[build]
+# Use Dockerfile instead of nixpacks for reliable Python/pip setup
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
+
+[build.watchPatterns]
+# Only rebuild when these files change
+patterns = [
+    "**/*.py",
+    "requirements.txt",
+    "Dockerfile",
+    "start.sh"
+]
+
+[deploy]
+# Health check configuration
+healthcheckPath = "/health"
+healthcheckTimeout = 300
+startCommand = "./start.sh"
+
+# Restart policy
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 10
+
+# Resource configuration
+numReplicas = 1
+
+# Environment-specific settings
+[deploy.env]
+PYTHONUNBUFFERED = "1"
+PORT = "${{PORT}}"

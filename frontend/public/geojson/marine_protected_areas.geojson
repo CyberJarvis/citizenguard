@@ -1,0 +1,198 @@
+{
+  "type": "FeatureCollection",
+  "name": "Indian Marine Protected Areas",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gulf of Mannar Marine National Park",
+        "type": "National Park",
+        "state": "Tamil Nadu",
+        "area_sq_km": 560,
+        "established": 1980,
+        "description": "First marine national park in India, rich coral diversity",
+        "protected_species": ["Dugong", "Sea Turtle", "Dolphins", "Coral Reefs"]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[78.8, 8.8], [79.4, 8.8], [79.4, 9.3], [78.8, 9.3], [78.8, 8.8]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mahatma Gandhi Marine National Park",
+        "type": "National Park",
+        "state": "Andaman & Nicobar",
+        "area_sq_km": 281.5,
+        "established": 1983,
+        "description": "Pristine coral reefs and mangrove creeks",
+        "protected_species": ["Saltwater Crocodile", "Sea Turtle", "Coral Reefs"]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[92.5, 11.4], [92.8, 11.4], [92.8, 11.7], [92.5, 11.7], [92.5, 11.4]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rani Jhansi Marine National Park",
+        "type": "National Park",
+        "state": "Andaman & Nicobar",
+        "area_sq_km": 256.1,
+        "established": 1996,
+        "description": "Marine biodiversity hotspot",
+        "protected_species": ["Dugong", "Sea Turtle", "Dolphins"]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[93.0, 12.0], [93.4, 12.0], [93.4, 12.4], [93.0, 12.4], [93.0, 12.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gulf of Kutch Marine Sanctuary",
+        "type": "Sanctuary",
+        "state": "Gujarat",
+        "area_sq_km": 295,
+        "established": 1980,
+        "description": "Coral reefs and mangroves in Gulf of Kutch",
+        "protected_species": ["Coral Reefs", "Dolphins", "Sea Birds"]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[69.0, 22.3], [70.2, 22.3], [70.2, 22.8], [69.0, 22.8], [69.0, 22.3]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Malvan Marine Sanctuary",
+        "type": "Sanctuary",
+        "state": "Maharashtra",
+        "area_sq_km": 29.12,
+        "established": 1987,
+        "description": "Coral reefs around Sindhudurg Fort",
+        "protected_species": ["Coral Reefs", "Dolphins", "Sea Turtles"]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.4, 16.0], [73.55, 16.0], [73.55, 16.1], [73.4, 16.1], [73.4, 16.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gahirmatha Marine Sanctuary",
+        "type": "Sanctuary",
+        "state": "Odisha",
+        "area_sq_km": 1435,
+        "established": 1997,
+        "description": "World's largest nesting beach for Olive Ridley turtles",
+        "protected_species": ["Olive Ridley Turtle", "Dolphins", "Sea Birds"]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[86.7, 20.4], [87.1, 20.4], [87.1, 20.9], [86.7, 20.9], [86.7, 20.4]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sundarbans National Park",
+        "type": "National Park",
+        "state": "West Bengal",
+        "area_sq_km": 1330,
+        "established": 1984,
+        "description": "UNESCO World Heritage Site, largest mangrove forest",
+        "protected_species": ["Royal Bengal Tiger", "Saltwater Crocodile", "Gangetic Dolphin"]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[88.5, 21.6], [89.2, 21.6], [89.2, 22.1], [88.5, 22.1], [88.5, 21.6]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bhitarkanika National Park",
+        "type": "National Park",
+        "state": "Odisha",
+        "area_sq_km": 145,
+        "established": 1998,
+        "description": "Second largest mangrove ecosystem in India",
+        "protected_species": ["Saltwater Crocodile", "Olive Ridley Turtle", "King Cobra"]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[86.8, 20.5], [87.1, 20.5], [87.1, 20.8], [86.8, 20.8], [86.8, 20.5]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Point Calimere Wildlife Sanctuary",
+        "type": "Sanctuary",
+        "state": "Tamil Nadu",
+        "area_sq_km": 30,
+        "established": 1967,
+        "description": "Important wetland for migratory birds",
+        "protected_species": ["Flamingos", "Blackbuck", "Migratory Birds"]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[79.8, 10.25], [79.95, 10.25], [79.95, 10.35], [79.8, 10.35], [79.8, 10.25]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coringa Wildlife Sanctuary",
+        "type": "Sanctuary",
+        "state": "Andhra Pradesh",
+        "area_sq_km": 235,
+        "established": 1978,
+        "description": "Second largest stretch of mangrove forests in India",
+        "protected_species": ["Fishing Cat", "Smooth-coated Otter", "Sea Turtles"]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[82.2, 16.7], [82.5, 16.7], [82.5, 17.0], [82.2, 17.0], [82.2, 16.7]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pulicat Lake Bird Sanctuary",
+        "type": "Sanctuary",
+        "state": "Andhra Pradesh/Tamil Nadu",
+        "area_sq_km": 500,
+        "established": 1976,
+        "description": "Second largest brackish water lagoon in India",
+        "protected_species": ["Flamingos", "Pelicans", "Painted Storks"]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[80.1, 13.4], [80.35, 13.4], [80.35, 13.8], [80.1, 13.8], [80.1, 13.4]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Chilika Lake Wildlife Sanctuary",
+        "type": "Sanctuary",
+        "state": "Odisha",
+        "area_sq_km": 1165,
+        "established": 1981,
+        "description": "Largest coastal lagoon in India, Ramsar site",
+        "protected_species": ["Irrawaddy Dolphin", "Migratory Birds", "Fish"]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[85.1, 19.5], [85.7, 19.5], [85.7, 19.9], [85.1, 19.9], [85.1, 19.5]]]
+      }
+    }
+  ]
+}

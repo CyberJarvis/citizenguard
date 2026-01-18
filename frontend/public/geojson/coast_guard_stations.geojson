@@ -1,0 +1,294 @@
+{
+  "type": "FeatureCollection",
+  "name": "Indian Coast Guard Stations",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard District HQ - Mumbai",
+        "type": "District HQ",
+        "region": "Western",
+        "state": "Maharashtra",
+        "contact": "022-24313636",
+        "capabilities": ["Search & Rescue", "Pollution Response", "Maritime Security"]
+      },
+      "geometry": { "type": "Point", "coordinates": [72.8347, 18.9220] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Station Porbandar",
+        "type": "Station",
+        "region": "Western",
+        "state": "Gujarat",
+        "contact": "0286-2242451",
+        "capabilities": ["Search & Rescue", "Coastal Patrol"]
+      },
+      "geometry": { "type": "Point", "coordinates": [69.6293, 21.6417] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Station Okha",
+        "type": "Station",
+        "region": "Western",
+        "state": "Gujarat",
+        "contact": "02892-262331",
+        "capabilities": ["Search & Rescue", "Coastal Patrol"]
+      },
+      "geometry": { "type": "Point", "coordinates": [69.0711, 22.4675] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Station Veraval",
+        "type": "Station",
+        "region": "Western",
+        "state": "Gujarat",
+        "contact": "02876-221654",
+        "capabilities": ["Search & Rescue", "Fisheries Protection"]
+      },
+      "geometry": { "type": "Point", "coordinates": [70.3629, 20.9159] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Station Daman",
+        "type": "Station",
+        "region": "Western",
+        "state": "Daman & Diu",
+        "contact": "0260-2254891",
+        "capabilities": ["Search & Rescue", "Coastal Patrol"]
+      },
+      "geometry": { "type": "Point", "coordinates": [72.8397, 20.4147] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Air Station Daman",
+        "type": "Air Station",
+        "region": "Western",
+        "state": "Daman & Diu",
+        "contact": "0260-2254892",
+        "capabilities": ["Aerial SAR", "Maritime Surveillance"]
+      },
+      "geometry": { "type": "Point", "coordinates": [72.8430, 20.4345] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Regional HQ - Chennai",
+        "type": "Regional HQ",
+        "region": "Eastern",
+        "state": "Tamil Nadu",
+        "contact": "044-25251641",
+        "capabilities": ["Command", "Search & Rescue", "Maritime Security"]
+      },
+      "geometry": { "type": "Point", "coordinates": [80.2785, 13.0827] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Station Mandapam",
+        "type": "Station",
+        "region": "Eastern",
+        "state": "Tamil Nadu",
+        "contact": "04573-241522",
+        "capabilities": ["Search & Rescue", "Anti-Poaching"]
+      },
+      "geometry": { "type": "Point", "coordinates": [79.1167, 9.2833] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Station Tuticorin",
+        "type": "Station",
+        "region": "Eastern",
+        "state": "Tamil Nadu",
+        "contact": "0461-2320515",
+        "capabilities": ["Search & Rescue", "Coastal Patrol"]
+      },
+      "geometry": { "type": "Point", "coordinates": [78.1348, 8.7642] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Station Karaikal",
+        "type": "Station",
+        "region": "Eastern",
+        "state": "Puducherry",
+        "contact": "04368-222156",
+        "capabilities": ["Search & Rescue", "Coastal Patrol"]
+      },
+      "geometry": { "type": "Point", "coordinates": [79.8500, 10.9167] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard District HQ - Visakhapatnam",
+        "type": "District HQ",
+        "region": "Eastern",
+        "state": "Andhra Pradesh",
+        "contact": "0891-2562881",
+        "capabilities": ["Search & Rescue", "Pollution Response", "Maritime Security"]
+      },
+      "geometry": { "type": "Point", "coordinates": [83.2847, 17.6868] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Station Kakinada",
+        "type": "Station",
+        "region": "Eastern",
+        "state": "Andhra Pradesh",
+        "contact": "0884-2362512",
+        "capabilities": ["Search & Rescue", "Offshore Patrol"]
+      },
+      "geometry": { "type": "Point", "coordinates": [82.2475, 16.9891] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard District HQ - Paradip",
+        "type": "District HQ",
+        "region": "Eastern",
+        "state": "Odisha",
+        "contact": "06722-223601",
+        "capabilities": ["Search & Rescue", "Pollution Response"]
+      },
+      "geometry": { "type": "Point", "coordinates": [86.6128, 20.2644] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Station Gopalpur",
+        "type": "Station",
+        "region": "Eastern",
+        "state": "Odisha",
+        "contact": "0680-2242156",
+        "capabilities": ["Search & Rescue", "Coastal Patrol"]
+      },
+      "geometry": { "type": "Point", "coordinates": [84.9667, 19.2667] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard District HQ - Haldia",
+        "type": "District HQ",
+        "region": "Eastern",
+        "state": "West Bengal",
+        "contact": "03224-252500",
+        "capabilities": ["Search & Rescue", "River Patrol"]
+      },
+      "geometry": { "type": "Point", "coordinates": [88.0833, 22.0333] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Station Frasergunj",
+        "type": "Station",
+        "region": "Eastern",
+        "state": "West Bengal",
+        "contact": "03210-255500",
+        "capabilities": ["Search & Rescue", "Sundarbans Patrol"]
+      },
+      "geometry": { "type": "Point", "coordinates": [88.2500, 21.5833] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Regional HQ - Port Blair",
+        "type": "Regional HQ",
+        "region": "Andaman & Nicobar",
+        "state": "Andaman & Nicobar",
+        "contact": "03192-232310",
+        "capabilities": ["Command", "Search & Rescue", "Island Security"]
+      },
+      "geometry": { "type": "Point", "coordinates": [92.7265, 11.6234] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Station Campbell Bay",
+        "type": "Station",
+        "region": "Andaman & Nicobar",
+        "state": "Andaman & Nicobar",
+        "contact": "03192-264123",
+        "capabilities": ["Search & Rescue", "Maritime Surveillance"]
+      },
+      "geometry": { "type": "Point", "coordinates": [93.9333, 7.0167] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Station Kochi",
+        "type": "District HQ",
+        "region": "Western",
+        "state": "Kerala",
+        "contact": "0484-2668291",
+        "capabilities": ["Search & Rescue", "Pollution Response", "Maritime Security"]
+      },
+      "geometry": { "type": "Point", "coordinates": [76.2673, 9.9312] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Station Beypore",
+        "type": "Station",
+        "region": "Western",
+        "state": "Kerala",
+        "contact": "0495-2412345",
+        "capabilities": ["Search & Rescue", "Coastal Patrol"]
+      },
+      "geometry": { "type": "Point", "coordinates": [75.8167, 11.1667] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Station New Mangalore",
+        "type": "Station",
+        "region": "Western",
+        "state": "Karnataka",
+        "contact": "0824-2407320",
+        "capabilities": ["Search & Rescue", "Pollution Response"]
+      },
+      "geometry": { "type": "Point", "coordinates": [74.8123, 12.9141] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Station Karwar",
+        "type": "Station",
+        "region": "Western",
+        "state": "Karnataka",
+        "contact": "08382-226256",
+        "capabilities": ["Search & Rescue", "Naval Coordination"]
+      },
+      "geometry": { "type": "Point", "coordinates": [74.1240, 14.8127] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Station Goa",
+        "type": "District HQ",
+        "region": "Western",
+        "state": "Goa",
+        "contact": "0832-2520566",
+        "capabilities": ["Search & Rescue", "Tourism Safety", "Maritime Security"]
+      },
+      "geometry": { "type": "Point", "coordinates": [73.8007, 15.4023] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coast Guard Air Enclave Chennai",
+        "type": "Air Station",
+        "region": "Eastern",
+        "state": "Tamil Nadu",
+        "contact": "044-25226789",
+        "capabilities": ["Aerial SAR", "Maritime Reconnaissance"]
+      },
+      "geometry": { "type": "Point", "coordinates": [80.1694, 12.9941] }
+    }
+  ]
+}

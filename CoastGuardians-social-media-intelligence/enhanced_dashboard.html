@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coast Guardian Enhanced Dashboard - Marine Intelligence</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .controls {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .control-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .control-section h3 {
+            margin-bottom: 0.8rem;
+            color: #64b5f6;
+            font-size: 1rem;
+        }
+
+        .slider-container {
+            margin-bottom: 1rem;
+        }
+
+        .slider-container label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #64b5f6;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #64b5f6;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .value-display {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            text-align: right;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #64b5f6, #42a5f5);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #42a5f5, #2196f3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(100, 181, 246, 0.3);
+        }
+
+        .btn.danger {
+            background: linear-gradient(45deg, #f44336, #d32f2f);
+        }
+
+        .btn.danger:hover {
+            background: linear-gradient(45deg, #d32f2f, #c62828);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 1.2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: #64b5f6;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .feed-section, .alerts-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #64b5f6;
+        }
+
+        .post-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 3px solid #64b5f6;
+            transition: all 0.3s ease;
+        }
+
+        .post-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(2px);
+        }
+
+        .post-item.disaster {
+            border-left-color: #ff5722;
+            background: rgba(255, 87, 34, 0.1);
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-text {
+            font-size: 0.95rem;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-badges {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        .badge.platform {
+            background: rgba(100, 181, 246, 0.3);
+            color: #64b5f6;
+        }
+
+        .badge.language {
+            background: rgba(76, 175, 80, 0.3);
+            color: #4caf50;
+        }
+
+        .badge.disaster {
+            background: rgba(255, 87, 34, 0.3);
+            color: #ff5722;
+        }
+
+        .badge.location {
+            background: rgba(156, 39, 176, 0.3);
+            color: #9c27b0;
+        }
+
+        .alert-item {
+            background: rgba(255, 87, 34, 0.15);
+            border: 1px solid rgba(255, 87, 34, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .alert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .alert-severity {
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .alert-severity.critical {
+            background: #d32f2f;
+            color: white;
+        }
+
+        .alert-severity.high {
+            background: #ff5722;
+            color: white;
+        }
+
+        .alert-severity.medium {
+            background: #ff9800;
+            color: white;
+        }
+
+        .alert-text {
+            font-size: 0.9rem;
+            line-height: 1.3;
+            opacity: 0.9;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+
+        .status-indicator.online {
+            background: #4caf50;
+        }
+
+        .status-indicator.offline {
+            background: #f44336;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            opacity: 0.7;
+        }
+
+        .error {
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid rgba(244, 67, 54, 0.5);
+            color: #ffcdd2;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .success {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid rgba(76, 175, 80, 0.5);
+            color: #c8e6c9;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .language-selector {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 0.4rem;
+            color: white;
+            font-size: 0.8rem;
+        }
+
+        .language-selector option {
+            background: #1e3c72;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+        /* Slide-in animation for new posts */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Pulse animation for critical alerts */
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(255, 87, 34, 0);
+            }
+        }
+
+        .pulse-alert {
+            animation: pulse 2s infinite;
+        }
+
+        /* Smooth transitions for all post and alert items */
+        .post-item, .alert-item {
+            will-change: transform, opacity, max-height;
+        }
+
+        /* Counter animation style */
+        .stat-value {
+            transition: transform 0.3s ease-out;
+        }
+
+        /* Smoother scrollbar */
+        #posts-container, #alerts-container {
+            max-height: 600px;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        #posts-container::-webkit-scrollbar,
+        #alerts-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #posts-container::-webkit-scrollbar-track,
+        #alerts-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        #posts-container::-webkit-scrollbar-thumb,
+        #alerts-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        #posts-container::-webkit-scrollbar-thumb:hover,
+        #alerts-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>
+            🌊 CoastGuardian Enhanced Dashboard
+            <span style="font-size: 0.6em; opacity: 0.8;">Marine Intelligence with Multi-Language Support</span>
+        </h1>
+    </div>
+
+    <div class="container">
+        <!-- Enhanced Controls Section -->
+        <div class="controls">
+            <div class="controls-grid">
+                <!-- Feed Configuration -->
+                <div class="control-section">
+                    <h3>📊 Feed Configuration</h3>
+
+                    <div class="slider-container">
+                        <label for="disaster-probability">Disaster Probability (%)</label>
+                        <div class="slider-wrapper">
+                            <input type="range" id="disaster-probability" class="slider"
+                                   min="0" max="100" value="30">
+                        </div>
+                        <div class="value-display" id="disaster-prob-value">30%</div>
+                    </div>
+
+                    <div class="slider-container">
+                        <label for="post-interval">Post Interval (seconds)</label>
+                        <div class="slider-wrapper">
+                            <input type="range" id="post-interval" class="slider"
+                                   min="3" max="30" value="8">
+                        </div>
+                        <div class="value-display" id="post-interval-value">8s</div>
+                    </div>
+                </div>
+
+                <!-- Language Configuration -->
+                <div class="control-section">
+                    <h3>🌍 Language Settings</h3>
+
+                    <div class="slider-container">
+                        <label for="language-mix">Multi-Language Mix (%)</label>
+                        <div class="slider-wrapper">
+                            <input type="range" id="language-mix" class="slider"
+                                   min="0" max="100" value="40">
+                        </div>
+                        <div class="value-display" id="language-mix-value">40%</div>
+                    </div>
+
+                    <label for="primary-language">Primary Language:</label>
+                    <select id="primary-language" class="language-selector">
+                        <option value="english">English</option>
+                        <option value="hindi">Hindi (हिंदी)</option>
+                        <option value="tamil">Tamil (தமிழ்)</option>
+                        <option value="telugu">Telugu (తెలుగు)</option>
+                        <option value="bengali">Bengali (বাংলা)</option>
+                        <option value="gujarati">Gujarati (ગુજરાતી)</option>
+                        <option value="marathi">Marathi (मराठी)</option>
+                        <option value="kannada">Kannada (ಕನ್ನಡ)</option>
+                        <option value="malayalam">Malayalam (മലയാളം)</option>
+                    </select>
+                </div>
+
+                <!-- Feed Control -->
+                <div class="control-section">
+                    <h3>⚡ Feed Control</h3>
+                    <div class="button-group">
+                        <button class="btn" id="start-feed">▶ Start Enhanced Feed</button>
+                        <button class="btn danger" id="stop-feed">⏹ Stop Feed</button>
+                        <button class="btn" id="update-config">🔄 Update Config</button>
+                    </div>
+
+                    <div style="margin-top: 0.8rem; font-size: 0.8rem;">
+                        Status: <span class="status-indicator offline" id="feed-status"></span>
+                        <span id="feed-status-text">Offline</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="message-area"></div>
+        </div>
+
+        <!-- Statistics Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="total-posts">0</div>
+                <div class="stat-label">Total Posts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="disaster-posts">0</div>
+                <div class="stat-label">Disaster Posts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="active-alerts">0</div>
+                <div class="stat-label">Active Alerts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="languages-detected">1</div>
+                <div class="stat-label">Languages</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Live Feed Section -->
+            <div class="feed-section">
+                <div class="section-header">
+                    <h2 class="section-title">🔴 Live Social Media Feed</h2>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn" id="refresh-feed">🔄 Refresh</button>
+                        <button class="btn danger" id="clear-posts">🗑️ Clear Posts</button>
+                    </div>
+                </div>
+                <div id="posts-container">
+                    <div class="loading">
+                        <p>🌊 Starting enhanced multilingual feed system...</p>
+                        <p style="font-size: 0.8em; margin-top: 0.5rem;">
+                            Supports 9 Indian languages with real-time disaster detection
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alerts Section -->
+            <div class="alerts-section">
+                <div class="section-header">
+                    <h2 class="section-title">🚨 Live Alerts</h2>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn" id="refresh-alerts">🔄 Refresh</button>
+                        <button class="btn danger" id="clear-alerts">🗑️ Clear Alerts</button>
+                    </div>
+                </div>
+                <div id="alerts-container">
+                    <div class="loading">
+                        <p>Monitoring for emergency situations...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let feedInterval;
+        let alertsInterval;
+        let displayedPostIds = new Set(); // Track displayed posts
+        let displayedAlertIds = new Set(); // Track displayed alerts
+        let currentSessionPostIds = new Set(); // Track post IDs from current session for alert sync
+        let totalPostCount = 0;
+        let disasterPostCount = 0;
+        let allLanguages = new Set();
+        let postQueue = []; // Queue for posts to display one-by-one
+        let alertQueue = []; // Queue for alerts to display one-by-one
+        let isDisplayingPost = false; // Flag to prevent simultaneous displays
+        let isDisplayingAlert = false;
+        let isFirstLoad = true; // Track if this is the first load
+        let isFirstAlertLoad = true; // Track first alert load to skip old alerts
+        const MAX_DISPLAYED_POSTS = 10; // Maximum posts to show at once
+        const MAX_DISPLAYED_ALERTS = 6; // Maximum alerts to show at once
+
+        // ========== SMOOTH DISPLAY TIMING CONFIGURATION ==========
+        const POST_DISPLAY_DELAY = 2500;      // 2.5 seconds between each post
+        const ALERT_DISPLAY_DELAY = 2000;     // 2 seconds between each alert
+        const POST_ANIMATION_DURATION = 1000; // 1 second animation
+        const ALERT_ANIMATION_DURATION = 800; // 0.8 second animation
+        const FEED_REFRESH_INTERVAL = 5000;   // Check for new posts every 5 seconds
+        const ALERT_REFRESH_INTERVAL = 6000;  // Check for new alerts every 6 seconds
+        let lastPostTime = 0;  // Track timing for synchronized display
+        let lastAlertTime = 0;
+
+        // Slider controls
+        const disasterProbSlider = document.getElementById('disaster-probability');
+        const postIntervalSlider = document.getElementById('post-interval');
+        const languageMixSlider = document.getElementById('language-mix');
+        const primaryLanguageSelect = document.getElementById('primary-language');
+
+        // Update slider value displays
+        disasterProbSlider.addEventListener('input', function() {
+            document.getElementById('disaster-prob-value').textContent = this.value + '%';
+        });
+
+        postIntervalSlider.addEventListener('input', function() {
+            document.getElementById('post-interval-value').textContent = this.value + 's';
+        });
+
+        languageMixSlider.addEventListener('input', function() {
+            document.getElementById('language-mix-value').textContent = this.value + '%';
+        });
+
+        // Feed control buttons
+        document.getElementById('start-feed').addEventListener('click', startEnhancedFeed);
+        document.getElementById('stop-feed').addEventListener('click', stopEnhancedFeed);
+        document.getElementById('update-config').addEventListener('click', updateFeedConfig);
+        document.getElementById('refresh-feed').addEventListener('click', refreshFeed);
+        document.getElementById('refresh-alerts').addEventListener('click', refreshAlerts);
+        document.getElementById('clear-posts').addEventListener('click', clearPosts);
+        document.getElementById('clear-alerts').addEventListener('click', clearAlerts);
+
+        async function startEnhancedFeed() {
+            try {
+                showMessage('Starting enhanced multilingual feed...', 'info');
+
+                // Clear existing posts when starting fresh
+                clearPosts();
+                clearAlerts();
+                isFirstLoad = true;
+                isFirstAlertLoad = true;
+                currentSessionPostIds.clear();
+
+                const response = await fetch('/feed/start/enhanced', {
+                    method: 'POST'
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    showMessage('✅ Enhanced feed started! Posts will appear one-by-one.', 'success');
+                    updateFeedStatus(true);
+                    startAutoRefresh();
+                    await updateFeedConfig(); // Apply current settings
+                } else {
+                    throw new Error(await response.text());
+                }
+            } catch (error) {
+                showMessage('❌ Failed to start feed: ' + error.message, 'error');
+            }
+        }
+
+        async function stopEnhancedFeed() {
+            try {
+                const response = await fetch('/feed/stop', {
+                    method: 'POST'
+                });
+
+                if (response.ok) {
+                    showMessage('⏹ Feed stopped', 'info');
+                    updateFeedStatus(false);
+                    stopAutoRefresh();
+                } else {
+                    throw new Error(await response.text());
+                }
+            } catch (error) {
+                showMessage('❌ Failed to stop feed: ' + error.message, 'error');
+            }
+        }
+
+        async function updateFeedConfig() {
+            try {
+                const config = {
+                    disaster_probability: disasterProbSlider.value / 100,
+                    post_interval: parseInt(postIntervalSlider.value),
+                    language_mix: languageMixSlider.value / 100,
+                    primary_language: primaryLanguageSelect.value
+                };
+
+                const params = new URLSearchParams({
+                    post_interval: config.post_interval,
+                    disaster_probability: config.disaster_probability,
+                    language_mix: config.language_mix,
+                    primary_language: config.primary_language
+                });
+
+                const response = await fetch('/feed/configure?' + params, {
+                    method: 'POST'
+                });
+
+                if (response.ok) {
+                    showMessage('🔄 Configuration updated successfully!', 'success');
+                } else {
+                    throw new Error(await response.text());
+                }
+            } catch (error) {
+                showMessage('❌ Failed to update config: ' + error.message, 'error');
+            }
+        }
+
+        async function refreshFeed() {
+            try {
+                const response = await fetch('/feed/enhanced?limit=5'); // Only fetch latest 5 posts
+                if (response.ok) {
+                    const data = await response.json();
+                    const posts = data.posts || [];
+                    processPosts(posts);
+                }
+            } catch (error) {
+                console.error('Feed refresh error:', error);
+            }
+        }
+
+        async function refreshAlerts() {
+            try {
+                const response = await fetch('/alerts/active');
+                if (response.ok) {
+                    const data = await response.json();
+                    const alerts = data.alerts?.alerts || data.alerts || [];
+                    processAlerts(alerts);
+                }
+            } catch (error) {
+                console.error('Alerts refresh error:', error);
+            }
+        }
+
+        function processPosts(posts) {
+            if (!posts || posts.length === 0) {
+                const container = document.getElementById('posts-container');
+                if (displayedPostIds.size === 0) {
+                    container.innerHTML = '<div class="loading"><p>🔍 Waiting for posts... Start the enhanced feed to see multilingual content!</p></div>';
+                }
+                return;
+            }
+
+            // On first load, just track existing post IDs without displaying them
+            if (isFirstLoad) {
+                posts.forEach(post => displayedPostIds.add(post.id));
+                isFirstLoad = false;
+                const container = document.getElementById('posts-container');
+                container.innerHTML = '<div class="loading"><p>🔴 Live feed active. New posts will appear here one-by-one...</p></div>';
+                return;
+            }
+
+            // Filter only NEW posts that haven't been displayed yet
+            const newPosts = posts.filter(post => !displayedPostIds.has(post.id));
+
+            // Add new posts to queue (newest first)
+            newPosts.forEach(post => {
+                if (!displayedPostIds.has(post.id)) {
+                    postQueue.push(post);
+                    displayedPostIds.add(post.id);
+                    currentSessionPostIds.add(post.id); // Track for alert sync
+                }
+            });
+
+            // Start displaying posts from queue if not already displaying
+            if (!isDisplayingPost && postQueue.length > 0) {
+                displayNextPost();
+            }
+        }
+
+        function displayNextPost() {
+            if (postQueue.length === 0) {
+                isDisplayingPost = false;
+                return;
+            }
+
+            isDisplayingPost = true;
+            lastPostTime = Date.now();
+            const post = postQueue.shift();
+            const container = document.getElementById('posts-container');
+
+            // Remove loading message if present
+            const loadingEl = container.querySelector('.loading');
+            if (loadingEl) {
+                loadingEl.style.transition = 'opacity 0.5s ease-out';
+                loadingEl.style.opacity = '0';
+                setTimeout(() => loadingEl.remove(), 500);
+            }
+
+            // Update counters
+            totalPostCount++;
+            allLanguages.add(post.language);
+            const isDisaster = post.disaster_type && post.disaster_type !== 'none';
+            if (isDisaster || (post.alert_level && post.alert_level !== 'LOW')) {
+                disasterPostCount++;
+            }
+
+            // Create post element with smooth animation
+            const postElement = document.createElement('div');
+            postElement.className = `post-item ${isDisaster ? 'disaster' : ''}`;
+            postElement.style.opacity = '0';
+            postElement.style.transform = 'translateY(-40px) scale(0.95)';
+            postElement.style.maxHeight = '0';
+            postElement.style.overflow = 'hidden';
+            postElement.style.marginBottom = '0';
+            postElement.style.padding = '0 1rem';
+            postElement.innerHTML = `
+                <div class="post-meta">
+                    <span>${post.user?.username || '@user'} ${post.user?.verified ? '✓' : ''}</span>
+                    <span>${formatTimestamp(post.timestamp)}</span>
+                </div>
+                <div class="post-text">${post.text}</div>
+                <div class="post-badges">
+                    <span class="badge platform">${post.platform}</span>
+                    <span class="badge language">${post.language}</span>
+                    ${post.location ? `<span class="badge location">📍 ${post.location}</span>` : ''}
+                    ${isDisaster ? `<span class="badge disaster">⚠️ ${post.disaster_type}</span>` : ''}
+                    ${post.alert_level && post.alert_level !== 'LOW' ? `<span class="badge disaster">${post.alert_level}</span>` : ''}
+                </div>
+            `;
+
+            // Insert at the top of container
+            container.insertBefore(postElement, container.firstChild);
+
+            // Smooth expand and fade in animation
+            requestAnimationFrame(() => {
+                postElement.style.transition = `all ${POST_ANIMATION_DURATION}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
+                postElement.style.maxHeight = '300px';
+                postElement.style.opacity = '1';
+                postElement.style.transform = 'translateY(0) scale(1)';
+                postElement.style.marginBottom = '1rem';
+                postElement.style.padding = '1rem';
+            });
+
+            // Update counter displays with animation
+            animateCounter('total-posts', totalPostCount);
+            animateCounter('disaster-posts', disasterPostCount);
+            document.getElementById('languages-detected').textContent = allLanguages.size;
+
+            // Remove old posts if too many displayed (with smooth fade out)
+            const allPosts = container.querySelectorAll('.post-item');
+            if (allPosts.length > MAX_DISPLAYED_POSTS) {
+                const oldPost = allPosts[allPosts.length - 1];
+                oldPost.style.transition = 'all 0.8s ease-out';
+                oldPost.style.opacity = '0';
+                oldPost.style.transform = 'translateY(20px) scale(0.9)';
+                oldPost.style.maxHeight = '0';
+                oldPost.style.marginBottom = '0';
+                oldPost.style.padding = '0';
+                setTimeout(() => oldPost.remove(), 800);
+            }
+
+            // Schedule next post display with smooth delay
+            setTimeout(() => {
+                displayNextPost();
+            }, POST_DISPLAY_DELAY);
+        }
+
+        // Animate counter changes
+        function animateCounter(elementId, targetValue) {
+            const element = document.getElementById(elementId);
+            const currentValue = parseInt(element.textContent) || 0;
+            if (currentValue !== targetValue) {
+                element.style.transform = 'scale(1.2)';
+                element.style.transition = 'transform 0.3s ease-out';
+                element.textContent = targetValue;
+                setTimeout(() => {
+                    element.style.transform = 'scale(1)';
+                }, 300);
+            }
+        }
+
+        function processAlerts(alerts) {
+            const container = document.getElementById('alerts-container');
+
+            if (!alerts || alerts.length === 0) {
+                if (displayedAlertIds.size === 0) {
+                    container.innerHTML = '<div class="loading"><p>✅ No active alerts. System monitoring normally.</p></div>';
+                }
+                document.getElementById('active-alerts').textContent = '0';
+                return;
+            }
+
+            // Handle nested alerts structure
+            const alertsArray = alerts.alerts || alerts;
+
+            // On first alert load, skip existing alerts (wait for new ones from current session)
+            if (isFirstAlertLoad) {
+                alertsArray.forEach(alert => {
+                    const alertId = alert.alert_id || alert.post_id || JSON.stringify(alert);
+                    displayedAlertIds.add(alertId);
+                });
+                isFirstAlertLoad = false;
+                container.innerHTML = '<div class="loading"><p>🚨 Alert monitoring active. New alerts will appear here...</p></div>';
+                return;
+            }
+
+            // Filter only NEW alerts that:
+            // 1. Haven't been displayed yet
+            // 2. Belong to posts from current session (if post_id is available)
+            const newAlerts = alertsArray.filter(alert => {
+                const alertId = alert.alert_id || alert.post_id || JSON.stringify(alert);
+                if (displayedAlertIds.has(alertId)) return false;
+
+                // If alert has a post_id, check if it's from current session
+                if (alert.post_id && currentSessionPostIds.size > 0) {
+                    return currentSessionPostIds.has(alert.post_id);
+                }
+                return true; // Show alert if no post_id tracking
+            });
+
+            // Add new alerts to queue
+            newAlerts.forEach(alert => {
+                const alertId = alert.alert_id || alert.post_id || JSON.stringify(alert);
+                if (!displayedAlertIds.has(alertId)) {
+                    alertQueue.push(alert);
+                    displayedAlertIds.add(alertId);
+                }
+            });
+
+            // Update alert count (only count alerts from current session)
+            const sessionAlertCount = alertsArray.filter(alert => {
+                if (alert.post_id && currentSessionPostIds.size > 0) {
+                    return currentSessionPostIds.has(alert.post_id);
+                }
+                return true;
+            }).length;
+            document.getElementById('active-alerts').textContent = sessionAlertCount;
+
+            // Start displaying alerts from queue if not already displaying
+            if (!isDisplayingAlert && alertQueue.length > 0) {
+                displayNextAlert();
+            }
+        }
+
+        function displayNextAlert() {
+            if (alertQueue.length === 0) {
+                isDisplayingAlert = false;
+                return;
+            }
+
+            // Synchronize with posts - wait if a post was just displayed
+            const timeSinceLastPost = Date.now() - lastPostTime;
+            if (timeSinceLastPost < 1000 && lastPostTime > 0) {
+                // Wait a bit to not overlap with post animation
+                setTimeout(() => displayNextAlert(), 1000 - timeSinceLastPost);
+                return;
+            }
+
+            isDisplayingAlert = true;
+            lastAlertTime = Date.now();
+            const alert = alertQueue.shift();
+            const container = document.getElementById('alerts-container');
+
+            // Remove loading message if present
+            const loadingEl = container.querySelector('.loading');
+            if (loadingEl) {
+                loadingEl.style.transition = 'opacity 0.5s ease-out';
+                loadingEl.style.opacity = '0';
+                setTimeout(() => loadingEl.remove(), 500);
+            }
+
+            // Create alert element with smooth animation
+            const alertElement = document.createElement('div');
+            alertElement.className = 'alert-item';
+            alertElement.style.opacity = '0';
+            alertElement.style.transform = 'translateX(-50px) scale(0.9)';
+            alertElement.style.maxHeight = '0';
+            alertElement.style.overflow = 'hidden';
+            alertElement.style.marginBottom = '0';
+            alertElement.style.padding = '0 1rem';
+
+            const severity = (alert.alert_level || alert.severity || 'medium').toLowerCase();
+
+            // Add pulsing effect for critical/high alerts
+            const pulseClass = (severity === 'critical' || severity === 'high') ? 'pulse-alert' : '';
+
+            alertElement.innerHTML = `
+                <div class="alert-header">
+                    <span class="alert-severity ${severity} ${pulseClass}">${alert.alert_level || alert.severity || 'ALERT'}</span>
+                    <span style="font-size: 0.8em; opacity: 0.7;">${formatTimestamp(alert.timestamp || alert.triggered_at)}</span>
+                </div>
+                <div class="alert-text">${alert.post_excerpt || alert.reason || alert.message || 'Alert triggered'}</div>
+                ${alert.location ? `<div style="font-size: 0.8em; opacity: 0.7; margin-top: 0.3rem;">📍 ${alert.location} | ${alert.disaster_type || 'Unknown'}</div>` : ''}
+            `;
+
+            // Insert at the top of container
+            container.insertBefore(alertElement, container.firstChild);
+
+            // Smooth slide in and expand animation
+            requestAnimationFrame(() => {
+                alertElement.style.transition = `all ${ALERT_ANIMATION_DURATION}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
+                alertElement.style.maxHeight = '200px';
+                alertElement.style.opacity = '1';
+                alertElement.style.transform = 'translateX(0) scale(1)';
+                alertElement.style.marginBottom = '1rem';
+                alertElement.style.padding = '1rem';
+            });
+
+            // Animate alert count
+            animateCounter('active-alerts', document.querySelectorAll('#alerts-container .alert-item').length);
+
+            // Remove old alerts if too many displayed (with smooth fade out)
+            const allAlerts = container.querySelectorAll('.alert-item');
+            if (allAlerts.length > MAX_DISPLAYED_ALERTS) {
+                const oldAlert = allAlerts[allAlerts.length - 1];
+                oldAlert.style.transition = 'all 0.6s ease-out';
+                oldAlert.style.opacity = '0';
+                oldAlert.style.transform = 'translateX(30px) scale(0.9)';
+                oldAlert.style.maxHeight = '0';
+                oldAlert.style.marginBottom = '0';
+                setTimeout(() => oldAlert.remove(), 600);
+            }
+
+            // Schedule next alert display with smooth delay
+            setTimeout(() => {
+                displayNextAlert();
+            }, ALERT_DISPLAY_DELAY);
+        }
+
+        function clearPosts() {
+            document.getElementById('posts-container').innerHTML = '<div class="loading"><p>🔴 Ready for live feed. Click "Start Enhanced Feed" to begin.</p></div>';
+            // Reset all tracking variables
+            displayedPostIds.clear();
+            currentSessionPostIds.clear(); // Clear session tracking
+            postQueue = [];
+            totalPostCount = 0;
+            disasterPostCount = 0;
+            allLanguages.clear();
+            isFirstLoad = true;
+            isDisplayingPost = false;
+            document.getElementById('total-posts').textContent = '0';
+            document.getElementById('disaster-posts').textContent = '0';
+            document.getElementById('languages-detected').textContent = '0';
+        }
+
+        function clearAlerts() {
+            document.getElementById('alerts-container').innerHTML = '<div class="loading"><p>🚨 Alert monitoring active. New alerts will appear here...</p></div>';
+            displayedAlertIds.clear();
+            alertQueue = [];
+            isDisplayingAlert = false;
+            isFirstAlertLoad = true; // Reset first load flag
+            document.getElementById('active-alerts').textContent = '0';
+        }
+
+        function updateFeedStatus(isOnline) {
+            const statusIndicator = document.getElementById('feed-status');
+            const statusText = document.getElementById('feed-status-text');
+
+            if (isOnline) {
+                statusIndicator.className = 'status-indicator online';
+                statusText.textContent = 'Online';
+            } else {
+                statusIndicator.className = 'status-indicator offline';
+                statusText.textContent = 'Offline';
+            }
+        }
+
+        function startAutoRefresh() {
+            // Slower refresh intervals for smoother display
+            feedInterval = setInterval(refreshFeed, FEED_REFRESH_INTERVAL);
+            alertsInterval = setInterval(refreshAlerts, ALERT_REFRESH_INTERVAL);
+        }
+
+        function stopAutoRefresh() {
+            if (feedInterval) clearInterval(feedInterval);
+            if (alertsInterval) clearInterval(alertsInterval);
+        }
+
+        function showMessage(message, type) {
+            const messageArea = document.getElementById('message-area');
+            messageArea.innerHTML = `<div class="${type}">${message}</div>`;
+            setTimeout(() => {
+                messageArea.innerHTML = '';
+            }, 5000);
+        }
+
+        function formatTimestamp(timestamp) {
+            return new Date(timestamp).toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+        }
+
+        // Initialize dashboard
+        async function initDashboard() {
+            try {
+                // Check feed status
+                const statusResponse = await fetch('/feed/status');
+                if (statusResponse.ok) {
+                    const status = await statusResponse.json();
+                    updateFeedStatus(status.feed_running || false);
+                    if (status.feed_running) {
+                        isFirstLoad = true; // Will skip existing posts
+                        isFirstAlertLoad = true; // Will skip existing alerts
+                        startAutoRefresh();
+                        showMessage('🔴 Connected to live feed. New posts and alerts will appear one-by-one.', 'success');
+                    }
+                }
+
+                // Do NOT load existing posts/alerts on init - wait for new ones
+                // Initialize alerts display
+                const alertsContainer = document.getElementById('alerts-container');
+                alertsContainer.innerHTML = '<div class="loading"><p>🚨 Alert monitoring active. New alerts will appear here...</p></div>';
+                refreshAlerts();
+            } catch (error) {
+                console.error('Dashboard initialization error:', error);
+                showMessage('⚠️ Dashboard initialization partial. Some features may not work.', 'error');
+            }
+        }
+
+        // Start dashboard
+        initDashboard();
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', stopAutoRefresh);
+    </script>
+</body>
+</html>

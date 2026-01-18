@@ -1,0 +1,306 @@
+{
+  "type": "FeatureCollection",
+  "name": "Indian Coastal District Population Density",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mumbai",
+        "state": "Maharashtra",
+        "population": 12442373,
+        "density": 20634,
+        "density_level": "very_high",
+        "coastal_km": 150
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[72.75, 18.85], [73.05, 18.85], [73.05, 19.25], [72.75, 19.25], [72.75, 18.85]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Chennai",
+        "state": "Tamil Nadu",
+        "population": 7088000,
+        "density": 26903,
+        "density_level": "very_high",
+        "coastal_km": 25
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[80.15, 12.95], [80.35, 12.95], [80.35, 13.20], [80.15, 13.20], [80.15, 12.95]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kolkata",
+        "state": "West Bengal",
+        "population": 4496694,
+        "density": 24306,
+        "density_level": "very_high",
+        "coastal_km": 60
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[88.25, 22.40], [88.50, 22.40], [88.50, 22.70], [88.25, 22.70], [88.25, 22.40]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Visakhapatnam",
+        "state": "Andhra Pradesh",
+        "population": 2035922,
+        "density": 3067,
+        "density_level": "high",
+        "coastal_km": 132
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[83.15, 17.55], [83.45, 17.55], [83.45, 17.85], [83.15, 17.85], [83.15, 17.55]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kochi",
+        "state": "Kerala",
+        "population": 677381,
+        "density": 6340,
+        "density_level": "high",
+        "coastal_km": 48
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[76.15, 9.85], [76.40, 9.85], [76.40, 10.10], [76.15, 10.10], [76.15, 9.85]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Thiruvananthapuram",
+        "state": "Kerala",
+        "population": 957730,
+        "density": 1508,
+        "density_level": "medium",
+        "coastal_km": 78
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[76.85, 8.35], [77.10, 8.35], [77.10, 8.60], [76.85, 8.60], [76.85, 8.35]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Surat",
+        "state": "Gujarat",
+        "population": 4467797,
+        "density": 1376,
+        "density_level": "medium",
+        "coastal_km": 45
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[72.70, 21.05], [72.95, 21.05], [72.95, 21.30], [72.70, 21.30], [72.70, 21.05]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mangalore",
+        "state": "Karnataka",
+        "population": 623841,
+        "density": 1608,
+        "density_level": "medium",
+        "coastal_km": 65
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[74.70, 12.80], [74.95, 12.80], [74.95, 13.05], [74.70, 13.05], [74.70, 12.80]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Goa",
+        "state": "Goa",
+        "population": 1458545,
+        "density": 394,
+        "density_level": "medium",
+        "coastal_km": 105
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.70, 15.25], [74.05, 15.25], [74.05, 15.60], [73.70, 15.60], [73.70, 15.25]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Puri",
+        "state": "Odisha",
+        "population": 1698730,
+        "density": 488,
+        "density_level": "medium",
+        "coastal_km": 155
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[85.65, 19.65], [86.00, 19.65], [86.00, 20.00], [85.65, 20.00], [85.65, 19.65]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ramanathapuram",
+        "state": "Tamil Nadu",
+        "population": 1353445,
+        "density": 326,
+        "density_level": "low",
+        "coastal_km": 240
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[78.80, 9.10], [79.50, 9.10], [79.50, 9.60], [78.80, 9.60], [78.80, 9.10]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nagapattinam",
+        "state": "Tamil Nadu",
+        "population": 1616450,
+        "density": 740,
+        "density_level": "medium",
+        "coastal_km": 187
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[79.65, 10.55], [80.00, 10.55], [80.00, 10.95], [79.65, 10.95], [79.65, 10.55]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kanyakumari",
+        "state": "Tamil Nadu",
+        "population": 1870374,
+        "density": 1119,
+        "density_level": "medium",
+        "coastal_km": 71
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[77.35, 8.00], [77.65, 8.00], [77.65, 8.30], [77.35, 8.30], [77.35, 8.00]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "South 24 Parganas (Sundarbans)",
+        "state": "West Bengal",
+        "population": 8153176,
+        "density": 819,
+        "density_level": "medium",
+        "coastal_km": 300
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[88.30, 21.50], [89.00, 21.50], [89.00, 22.10], [88.30, 22.10], [88.30, 21.50]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kutch",
+        "state": "Gujarat",
+        "population": 2092371,
+        "density": 46,
+        "density_level": "very_low",
+        "coastal_km": 406
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[68.50, 22.80], [70.50, 22.80], [70.50, 23.80], [68.50, 23.80], [68.50, 22.80]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Raigad",
+        "state": "Maharashtra",
+        "population": 2634200,
+        "density": 375,
+        "density_level": "low",
+        "coastal_km": 240
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[72.80, 18.20], [73.20, 18.20], [73.20, 18.80], [72.80, 18.80], [72.80, 18.20]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sindhudurg",
+        "state": "Maharashtra",
+        "population": 849651,
+        "density": 166,
+        "density_level": "low",
+        "coastal_km": 121
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.30, 15.85], [73.70, 15.85], [73.70, 16.35], [73.30, 16.35], [73.30, 15.85]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Port Blair",
+        "state": "Andaman & Nicobar",
+        "population": 380581,
+        "density": 46,
+        "density_level": "very_low",
+        "coastal_km": 1962
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[92.55, 11.45], [92.90, 11.45], [92.90, 11.80], [92.55, 11.80], [92.55, 11.45]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kendrapara (Bhitarkanika)",
+        "state": "Odisha",
+        "population": 1439891,
+        "density": 545,
+        "density_level": "medium",
+        "coastal_km": 68
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[86.60, 20.40], [87.00, 20.40], [87.00, 20.80], [86.60, 20.80], [86.60, 20.40]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Krishna",
+        "state": "Andhra Pradesh",
+        "population": 4529009,
+        "density": 518,
+        "density_level": "medium",
+        "coastal_km": 88
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[80.60, 16.00], [81.40, 16.00], [81.40, 16.60], [80.60, 16.60], [80.60, 16.00]]]
+      }
+    }
+  ]
+}

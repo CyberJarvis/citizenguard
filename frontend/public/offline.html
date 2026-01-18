@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline - CoastGuardian</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #e2e8f0;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 400px;
+    }
+
+    .icon {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 24px;
+      background: rgba(59, 130, 246, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+    }
+
+    .icon svg {
+      width: 60px;
+      height: 60px;
+      color: #3b82f6;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #f1f5f9;
+    }
+
+    p {
+      font-size: 16px;
+      color: #94a3b8;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .features {
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(71, 85, 105, 0.3);
+    }
+
+    .features h2 {
+      font-size: 14px;
+      color: #22d3ee;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .features ul {
+      list-style: none;
+      text-align: left;
+    }
+
+    .features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+
+    .features li::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .sos-notice {
+      margin-top: 24px;
+      padding: 16px;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 10px;
+    }
+
+    .sos-notice p {
+      font-size: 14px;
+      color: #fca5a5;
+      margin-bottom: 0;
+    }
+
+    .sos-notice strong {
+      color: #ef4444;
+    }
+
+    .status {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .status.online {
+      color: #22c55e;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a5 5 0 01-7.072-7.072m4.243 4.243l2.829-2.829m-4.243 4.243L3 21m7.071-7.071l2.829 2.829" />
+      </svg>
+    </div>
+
+    <h1>You're Offline</h1>
+    <p>No internet connection detected. Don't worry - CoastGuardian works offline!</p>
+
+    <div class="features">
+      <h2>Available Offline</h2>
+      <ul>
+        <li>View cached map tiles</li>
+        <li>Access saved hazard data</li>
+        <li>Queue SOS alerts (syncs when online)</li>
+        <li>View GeoJSON layers</li>
+      </ul>
+    </div>
+
+    <button class="btn" onclick="window.location.reload()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Try Again
+    </button>
+
+    <div class="sos-notice">
+      <p><strong>Emergency?</strong> SOS alerts can still be triggered offline and will be sent automatically when connection is restored.</p>
+    </div>
+
+    <p class="status" id="status">Checking connection...</p>
+  </div>
+
+  <script>
+    function updateStatus() {
+      const statusEl = document.getElementById('status');
+      if (navigator.onLine) {
+        statusEl.textContent = 'Connection restored! Reloading...';
+        statusEl.classList.add('online');
+        setTimeout(() => window.location.reload(), 1000);
+      } else {
+        statusEl.textContent = 'Still offline. Cached content available.';
+        statusEl.classList.remove('online');
+      }
+    }
+
+    window.addEventListener('online', updateStatus);
+    window.addEventListener('offline', updateStatus);
+    updateStatus();
+  </script>
+</body>
+</html>

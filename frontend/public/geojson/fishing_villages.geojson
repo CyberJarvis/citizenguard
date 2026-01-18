@@ -1,0 +1,306 @@
+{
+  "type": "FeatureCollection",
+  "name": "Indian Fishing Villages",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Versova",
+        "state": "Maharashtra",
+        "district": "Mumbai",
+        "fishermen_population": 15000,
+        "boat_count": 800,
+        "primary_catch": "Pomfret, Prawns"
+      },
+      "geometry": { "type": "Point", "coordinates": [72.8128, 19.1364] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sassoon Dock",
+        "state": "Maharashtra",
+        "district": "Mumbai",
+        "fishermen_population": 8000,
+        "boat_count": 400,
+        "primary_catch": "Bombay Duck, Mackerel"
+      },
+      "geometry": { "type": "Point", "coordinates": [72.8347, 18.9167] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kasimedu",
+        "state": "Tamil Nadu",
+        "district": "Chennai",
+        "fishermen_population": 25000,
+        "boat_count": 1200,
+        "primary_catch": "Sardines, Mackerel, Prawns"
+      },
+      "geometry": { "type": "Point", "coordinates": [80.2942, 13.1167] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Royapuram",
+        "state": "Tamil Nadu",
+        "district": "Chennai",
+        "fishermen_population": 12000,
+        "boat_count": 600,
+        "primary_catch": "Seer Fish, Tuna"
+      },
+      "geometry": { "type": "Point", "coordinates": [80.2875, 13.1125] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nagapattinam",
+        "state": "Tamil Nadu",
+        "district": "Nagapattinam",
+        "fishermen_population": 35000,
+        "boat_count": 2500,
+        "primary_catch": "Prawns, Crabs, Fish"
+      },
+      "geometry": { "type": "Point", "coordinates": [79.8449, 10.7672] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rameswaram",
+        "state": "Tamil Nadu",
+        "district": "Ramanathapuram",
+        "fishermen_population": 20000,
+        "boat_count": 1800,
+        "primary_catch": "Sea Cucumber, Prawns"
+      },
+      "geometry": { "type": "Point", "coordinates": [79.3129, 9.2876] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kanyakumari",
+        "state": "Tamil Nadu",
+        "district": "Kanyakumari",
+        "fishermen_population": 18000,
+        "boat_count": 1500,
+        "primary_catch": "Tuna, Shark, Lobster"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.5385, 8.0883] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vizhinjam",
+        "state": "Kerala",
+        "district": "Thiruvananthapuram",
+        "fishermen_population": 22000,
+        "boat_count": 1600,
+        "primary_catch": "Tuna, Seer Fish"
+      },
+      "geometry": { "type": "Point", "coordinates": [76.9897, 8.3803] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Fort Kochi",
+        "state": "Kerala",
+        "district": "Ernakulam",
+        "fishermen_population": 10000,
+        "boat_count": 500,
+        "primary_catch": "Prawns, Mackerel"
+      },
+      "geometry": { "type": "Point", "coordinates": [76.2433, 9.9658] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Chellanam",
+        "state": "Kerala",
+        "district": "Ernakulam",
+        "fishermen_population": 15000,
+        "boat_count": 900,
+        "primary_catch": "Sardines, Anchovies"
+      },
+      "geometry": { "type": "Point", "coordinates": [76.2167, 9.8167] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Puri",
+        "state": "Odisha",
+        "district": "Puri",
+        "fishermen_population": 30000,
+        "boat_count": 2000,
+        "primary_catch": "Hilsa, Pomfret"
+      },
+      "geometry": { "type": "Point", "coordinates": [85.8312, 19.8134] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gopalpur",
+        "state": "Odisha",
+        "district": "Ganjam",
+        "fishermen_population": 8000,
+        "boat_count": 500,
+        "primary_catch": "Prawns, Crabs"
+      },
+      "geometry": { "type": "Point", "coordinates": [84.9667, 19.2667] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Digha",
+        "state": "West Bengal",
+        "district": "Purba Medinipur",
+        "fishermen_population": 12000,
+        "boat_count": 700,
+        "primary_catch": "Hilsa, Pomfret"
+      },
+      "geometry": { "type": "Point", "coordinates": [87.5167, 21.6833] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Namkhana",
+        "state": "West Bengal",
+        "district": "South 24 Parganas",
+        "fishermen_population": 25000,
+        "boat_count": 1500,
+        "primary_catch": "Hilsa, Tiger Prawns"
+      },
+      "geometry": { "type": "Point", "coordinates": [88.2333, 21.7667] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Srikakulam",
+        "state": "Andhra Pradesh",
+        "district": "Srikakulam",
+        "fishermen_population": 20000,
+        "boat_count": 1200,
+        "primary_catch": "Prawns, Mackerel"
+      },
+      "geometry": { "type": "Point", "coordinates": [83.8958, 18.2949] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Machilipatnam",
+        "state": "Andhra Pradesh",
+        "district": "Krishna",
+        "fishermen_population": 18000,
+        "boat_count": 1100,
+        "primary_catch": "Prawns, Crabs"
+      },
+      "geometry": { "type": "Point", "coordinates": [81.1303, 16.1875] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Veraval",
+        "state": "Gujarat",
+        "district": "Gir Somnath",
+        "fishermen_population": 40000,
+        "boat_count": 3000,
+        "primary_catch": "Fish, Prawns, Lobster"
+      },
+      "geometry": { "type": "Point", "coordinates": [70.3629, 20.9159] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Porbandar",
+        "state": "Gujarat",
+        "district": "Porbandar",
+        "fishermen_population": 25000,
+        "boat_count": 1800,
+        "primary_catch": "Pomfret, Prawns"
+      },
+      "geometry": { "type": "Point", "coordinates": [69.6293, 21.6417] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Okha",
+        "state": "Gujarat",
+        "district": "Devbhumi Dwarka",
+        "fishermen_population": 15000,
+        "boat_count": 1000,
+        "primary_catch": "Lobster, Fish"
+      },
+      "geometry": { "type": "Point", "coordinates": [69.0711, 22.4675] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Malpe",
+        "state": "Karnataka",
+        "district": "Udupi",
+        "fishermen_population": 20000,
+        "boat_count": 1500,
+        "primary_catch": "Mackerel, Sardines"
+      },
+      "geometry": { "type": "Point", "coordinates": [74.7000, 13.3500] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Karwar",
+        "state": "Karnataka",
+        "district": "Uttara Kannada",
+        "fishermen_population": 12000,
+        "boat_count": 800,
+        "primary_catch": "Mackerel, Tuna"
+      },
+      "geometry": { "type": "Point", "coordinates": [74.1240, 14.8127] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cuddalore",
+        "state": "Tamil Nadu",
+        "district": "Cuddalore",
+        "fishermen_population": 28000,
+        "boat_count": 1800,
+        "primary_catch": "Prawns, Crabs, Fish"
+      },
+      "geometry": { "type": "Point", "coordinates": [79.7714, 11.7480] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Puducherry Fishing Harbor",
+        "state": "Puducherry",
+        "district": "Puducherry",
+        "fishermen_population": 15000,
+        "boat_count": 900,
+        "primary_catch": "Sardines, Prawns"
+      },
+      "geometry": { "type": "Point", "coordinates": [79.8333, 11.9333] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Colachel",
+        "state": "Tamil Nadu",
+        "district": "Kanyakumari",
+        "fishermen_population": 10000,
+        "boat_count": 700,
+        "primary_catch": "Tuna, Shark"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.2500, 8.1833] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tuticorin Fishing Village",
+        "state": "Tamil Nadu",
+        "district": "Thoothukudi",
+        "fishermen_population": 22000,
+        "boat_count": 1400,
+        "primary_catch": "Prawns, Pearl Oysters"
+      },
+      "geometry": { "type": "Point", "coordinates": [78.1500, 8.8000] }
+    }
+  ]
+}
